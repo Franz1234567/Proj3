@@ -1,0 +1,9 @@
+@startuml
+
+state "Initialization" as I #LightBlue
+state "Operational" as O #LightGreen
+
+I --> O
+O --> I: reset
+
+@enduml
