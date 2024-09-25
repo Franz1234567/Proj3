@@ -2,8 +2,6 @@
 #define OPERATIONAL_H
 
 #include "state.h"
-#include "initialization.h"
-#include "idle.h"
 
 class OperationalState : public State
 {

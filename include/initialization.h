@@ -2,7 +2,6 @@
 #define INIT_H
 
 #include "state.h"
-#include "operational.h"
 
 class InitState : public State
 {
