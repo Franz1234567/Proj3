@@ -1,10 +1,9 @@
 #include "global.h"
 #include <avr/interrupt.h>
 
-int command_break = 0;
-
 void OperationalState::on_do()
 {
+    command_break = 0;
     analog.init(duty_cycle_first);
     timer_speed.init_speed();
     timer_speed.count_speed  = 0;
@@ -15,6 +14,10 @@ void OperationalState::on_do()
     while(1){
       command_break = Serial.read();
       if((char)command_break == 'r'){
+        break;
+      }
+      if (fault.is_lo() == 0){
+        command_break = 's';
         break;
       }
     }
@@ -59,6 +62,10 @@ void OperationalState::on_event(char event){
   if (event == 'r'){ // Reset 
     context_->transition_to(new InitState);
   }
+  else if (event == 's'){ // Stopping
+    context_->transition_to(new StoppedState);
+  }
+
 }
 
 ISR(TIMER2_COMPA_vect)

@@ -11,6 +11,7 @@
 #include "context.h"
 #include <initialization.h>
 #include <operational.h>
+#include <stopped.h>
 
 extern double Kp;
 
@@ -18,6 +19,7 @@ extern Encoder encA;
 extern Encoder encB;
 
 extern Digital_out led; //used to verify period on oscilloscope
+extern Digital_in fault;
 
 extern Analog_out analog;
 extern P_controller control;
@@ -35,5 +37,7 @@ extern bool curr_state_B;
 
 extern Timer_msec timer_speed;
 extern Timer_msec timer_pulses;
+
+extern int command_break; // for incoming serial data
 
 #endif

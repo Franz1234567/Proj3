@@ -9,6 +9,7 @@ Encoder encB(2);
 Digital_out led(5); //used to verify period on oscilloscope
 Analog_out analog(4);
 P_controller control(Kp);
+Digital_in fault(3);
 
 int max_speed; 
 int current_speed;
@@ -25,6 +26,7 @@ Timer_msec timer_speed;
 Timer_msec timer_pulses;
 
 int command = 0; // for incoming serial data
+int command_break = 0;
 Context* context;
 
 void setup()
