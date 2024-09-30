@@ -13,10 +13,10 @@ void OperationalState::on_do()
     
     while(1){
       command_break = Serial.read();
-      if((char)command_break == 'r'){
+      if(((char)command_break == 'r') || ((char)command_break == 's')){
         break;
       }
-      if (fault.is_lo() == 0){
+      if (fault.is_lo() == 1){
         command_break = 's';
         break;
       }

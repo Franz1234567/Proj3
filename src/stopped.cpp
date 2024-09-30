@@ -3,6 +3,7 @@
 void StoppedState::on_entry(){
 	Serial.println("Entering Stopped State");
     led.set_hi();
+    analog.pin_digi.set_lo();
 	on_do();
 }
 

@@ -25,6 +25,7 @@ void InitState::on_do(){
 	led.init();
 	led.set_lo();
 	analog.pin_digi.set_lo();
+	fault.init();
 	Serial.println("Variables initialized !");
 }
 
