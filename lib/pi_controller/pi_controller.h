@@ -10,7 +10,7 @@ private:
 public:
     PI_Controller(double Kp, double Ti, double T);
     double update(double ref, double actual) override;
-    double getSumError();
+    double get_sum_error();
 };
 
 #endif

@@ -16,14 +16,15 @@ void test_normal_PI_controller(){
 }
 
 void test_saturate_PI_controller(){
-    max_speed = 2800;
     PI_Controller pi_controller(0.05, 0.1, 0.1);  // Set max_output to 2800
 
     double u = pi_controller.update(2000, 0); 
-    TEST_ASSERT_EQUAL_FLOAT(200, pi_controller.getSumError());  // Access sum_error through getter
+    double current_sum_error = pi_controller.get_sum_error();
+    TEST_ASSERT_EQUAL_FLOAT(200, current_sum_error);  // Access sum_error through getter
     
     u = pi_controller.update(30000, 0); // saturates at max_output
-    TEST_ASSERT_EQUAL_FLOAT(200, pi_controller.getSumError());  // sum_error should not change after saturation
+    current_sum_error = pi_controller.get_sum_error();
+    TEST_ASSERT_EQUAL_FLOAT(200, current_sum_error);  // sum_error should not change after saturation
 }
 
 void setup(){
