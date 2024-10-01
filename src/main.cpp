@@ -2,13 +2,15 @@
 #include "global.h"
 
 double Kp = 0.05;
+double Ti = 0.1;
+double T = 0.1;
 
 Encoder encA(1);
 Encoder encB(2);
 
 Digital_out led(5); //used to verify period on oscilloscope
 Analog_out analog(4);
-P_controller control(Kp);
+PI_Controller control(Kp, Ti, T);
 Digital_in fault(3);
 
 int max_speed; 

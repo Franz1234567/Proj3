@@ -23,7 +23,7 @@ extern Digital_out led; //used to verify period on oscilloscope
 extern Digital_in fault;
 
 extern Analog_out analog;
-extern P_controller control;
+extern PI_Controller control;
 
 extern int max_speed ; 
 extern int current_speed;

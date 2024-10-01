@@ -97,7 +97,15 @@ ISR(TIMER2_COMPA_vect)
 ISR(TIMER0_COMPA_vect){
   timer_speed.count_speed++;
 
-  if(timer_speed.count_speed >= 125){ //1s
+  double u = control.update(ref, (double) current_speed);
+  
+  // duty_cycle = (int) (duty_cycle - u/max_speed*100);
+  // if (duty_cycle > 95){ duty_cycle = 95;} //limiting the bound of the duty cycle
+  // if (duty_cycle <= 5){ duty_cycle = 5;} //limiting the bound of the duty cycle
+  analog.set(u);
+  //led.toggle(); //to verify stable update
+
+    if(timer_speed.count_speed >= 125){ //1s
     current_speed = encA.count;
     encA.count = 0;
     timer_speed.count_speed = 0;
@@ -106,16 +114,10 @@ ISR(TIMER0_COMPA_vect){
     Serial.print("--------->Current speed: ");
     Serial.print(current_speed);
     Serial.print("------>PWM: ");
-    Serial.println(duty_cycle);
+    Serial.println(u);
+    // Serial.println(duty_cycle);
     //led.toggle(); // to verify 1s delay for speed
   }
-
-  double u = control.update(ref, (double) current_speed);
-  duty_cycle = (int) (duty_cycle - u/max_speed*100);
-  if (duty_cycle > 95){ duty_cycle = 95;} //limiting the bound of the duty cycle
-  if (duty_cycle <= 5){ duty_cycle = 5;} //limiting the bound of the duty cycle
-  analog.set(duty_cycle);
-  //led.toggle(); //to verify stable update
 }
 
 ISR(TIMER1_COMPA_vect){

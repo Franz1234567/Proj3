@@ -15,7 +15,7 @@ void InitState::on_do(){
 
 	max_speed = 2800; 
 	current_speed = 0;
-	ref = 100; // reference speed
+	ref = 1500; // reference speed
 	duty_cycle_first = 50; //original duty cycle
 	duty_cycle = 50; //used to change the duty cycle according to u
 
