@@ -12,6 +12,7 @@
 #include <initialization.h>
 #include <operational.h>
 #include <stopped.h>
+#include <pre_op.h>
 #include <pi_controller.h>
 
 extern double Kp;

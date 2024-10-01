@@ -1,7 +1,7 @@
 #include <unity.h>
 #include <Arduino.h>
 
-#include <global.h>
+#include <test_global.h>
 
 void test_normal_PI_controller(){
     PI_Controller pi_controller(0.05, 0.1, 0.1);
