@@ -14,8 +14,11 @@
 #include <stopped.h>
 #include <pre_op.h>
 #include <pi_controller.h>
+#include <string.h>
 
 extern double Kp;
+extern double Ti;
+extern double T;
 
 extern Encoder encA;
 extern Encoder encB;
