@@ -56,16 +56,15 @@ void OperationalState::on_exit()
 }
 
 void OperationalState::on_event(char event){
-//   if (event == 'p') { // Going to PreOperational
-//     context_->transition_to(new PreOpState());
-//   }
+  if (event == 'p') { // Going to PreOperational
+    context_->transition_to(new PreOpState());
+  }
   if (event == 'r'){ // Reset 
     context_->transition_to(new InitState);
   }
   else if (event == 's'){ // Stopping
     context_->transition_to(new StoppedState);
   }
-
 }
 
 ISR(TIMER2_COMPA_vect)
@@ -100,12 +99,12 @@ ISR(TIMER0_COMPA_vect){
   double u = control.update(ref, (double) current_speed);
   
   // duty_cycle = (int) (duty_cycle - u/max_speed*100);
-  // if (duty_cycle > 95){ duty_cycle = 95;} //limiting the bound of the duty cycle
-  // if (duty_cycle <= 5){ duty_cycle = 5;} //limiting the bound of the duty cycle
-  analog.set(u);
+  if (u > 95){ u = 95;} //limiting the bound of the duty cycle
+  if (u <= 5){ u = 5;} //limiting the bound of the duty cycle
+  analog.set(abs(100 - u));
   //led.toggle(); //to verify stable update
 
-    if(timer_speed.count_speed >= 125){ //1s
+  if(timer_speed.count_speed >= 125){ //1s
     current_speed = encA.count;
     encA.count = 0;
     timer_speed.count_speed = 0;
@@ -115,6 +114,7 @@ ISR(TIMER0_COMPA_vect){
     Serial.print(current_speed);
     Serial.print("------>PWM: ");
     Serial.println(u);
+    Serial.println(control.get_sum_error());
     // Serial.println(duty_cycle);
     //led.toggle(); // to verify 1s delay for speed
   }

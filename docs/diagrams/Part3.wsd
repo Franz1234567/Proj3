@@ -3,6 +3,7 @@
 state "Initialization" as I #LightBlue
 state "Operational" as O #LightGreen
 state "Stopped" as S #Red
+state "PreOp" as P #Yellow
 
 [*] --> I
 
@@ -16,10 +17,22 @@ O: exit/ Stop Controller and reset timers
 S: entry/ Set up LED
 S: do/ Blink and wait for command
 
-I --> O: "o" command
-O --> I: reset, "r" command
-O --> S: stop, "s" command
+P: entry/ Set up LED
+P: do/ Waiting for configuration
+P: exit/ Set up Controller
+
+I --> P
+
+P --> I: reset, "r" command
+P --> O: start, "o" command
+P --> S: stop, "s" command
+
+S --> P: set Pre Op, "p" command
 S --> O: set Op, "o" command
 S --> I: reset, "r" command
+
+O --> I: reset, "r" command
+O --> S: stop, "s" command
+O --> P: set Pre Op, "p" command
 
 @enduml

@@ -1,9 +1,9 @@
 #include <avr/interrupt.h>
 #include "global.h"
 
-double Kp = 0.05;
+double Kp = 0.03;
 double Ti = 0.1;
-double T = 0.1;
+double T = 0.0001;
 
 Encoder encA(1);
 Encoder encB(2);

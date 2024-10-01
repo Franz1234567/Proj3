@@ -34,7 +34,7 @@ void StoppedState::on_event(char event)
     else if (event == 'o'){
         this->context_->transition_to(new OperationalState);
     }
-    // else if (event == 'p'){
-    //     this->context_->transition_to(new PreOpState);
-    // }
+    else if (event == 'p'){
+        this->context_->transition_to(new PreOpState);
+    }
 }

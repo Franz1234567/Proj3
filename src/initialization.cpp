@@ -11,11 +11,11 @@ void InitState::on_exit(){
 }
 
 void InitState::on_do(){
-	Kp = 0.05;
+	Kp = 0.001;
 
 	max_speed = 2800; 
 	current_speed = 0;
-	ref = 1500; // reference speed
+	ref = 2000; // reference speed
 	duty_cycle_first = 50; //original duty cycle
 	duty_cycle = 50; //used to change the duty cycle according to u
 
@@ -27,11 +27,12 @@ void InitState::on_do(){
 	analog.pin_digi.set_lo();
 	fault.init();
 	Serial.println("Variables initialized !");
+	this->context_->transition_to(new PreOpState);
 }
 
 void InitState::on_event(char event)
 {
-  if (event == 'o'){
+  if (event == 'o'){ // We kept a manual way to go there but it should be automatic
 	this->context_->transition_to(new OperationalState);
   }
 }
