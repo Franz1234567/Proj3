@@ -10,7 +10,7 @@ Encoder encB(2);
 
 Digital_out led(5); //used to verify period on oscilloscope
 Analog_out analog(4);
-PI_Controller control(Kp, Ti, T);
+PI_Controller control;
 Digital_in fault(3);
 
 int max_speed; 

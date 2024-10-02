@@ -3,10 +3,14 @@
 double error = 0;
 double u = 0;
 
-PI_Controller::PI_Controller(double Kp, double Ti, double T) : P_controller(Kp){
+PI_Controller::PI_Controller():P_controller(){
+
+}
+
+void PI_Controller::init(double Kp, double Ti, double T){
+    Kp_priv = Kp;
     Ti_priv = Ti;
     T_priv = T;
-    Kp_priv = Kp;
     sum_error_priv = 0;
 }
 

@@ -31,6 +31,7 @@ void OperationalState::on_entry()
 {
   Serial.println("Entering Operational State");
   led.set_hi();
+  control.init(Kp, Ti, T);
   on_do();
 }
 
