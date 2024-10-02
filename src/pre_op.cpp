@@ -19,50 +19,15 @@ void PreOpState::on_do(){
     String Kp_str;
     String Ti_str;
 
-    // while(1){
-    //     led.toggle();
-    //     _delay_ms(500);
-    //     command_break = Serial.read();
-    //     if(((char)command_break == 'r') || ((char)command_break == 'o')||((char)command_break == 's')){
-    //         break;
-    //     }
-
-    //     // Handle input for Kp
-    //     if (!kp_received) {
-    //       if (Serial.available() > 0) {
-    //         Kp_str = Serial.readStringUntil('\n'); // Read until newline
-    //         if (Kp_str.length() > 0){
-    //           Kp = Kp_str.toDouble(); // Convert string to double
-    //           kp_received = true; // Mark Kp value as received
-    //           Serial.print("Kp received: ");
-    //           Serial.println(Kp);
-    //         }
-    //       }
-    //     }
-
-    //     // Handle input for Ti
-    //     else if (!ti_received) {
-    //       if (Serial.available() > 0) {
-    //         Ti_str = Serial.readStringUntil('\n'); // Read until newline
-    //           if (Ti_str.length() > 0){
-    //             Ti = Ti_str.toDouble(); // Convert string to double
-    //             ti_received = true; // Mark Ti value as received
-    //             Serial.print("Ti received: ");
-    //             Serial.println(Ti);
-    //         }
-    //       }
-    //     }
-    // }
-
     unsigned long previousMillis = 0;       // Stores last time LED was updated
     const long interval = 500;              // Interval for LED toggle (500 ms)
 
     while(1){
       unsigned long currentMillis = millis();
 
-      if (currentMillis - previousMillis >= interval) {
+      if (currentMillis - previousMillis >= interval) { // every 500 ms
           previousMillis = currentMillis;
-          led.toggle();  // Toggle LED every 500 ms
+          led.toggle();
       }
 
       if (Serial.available() > 0) {
@@ -84,7 +49,7 @@ void PreOpState::on_do(){
             }
           }
           else{
-            Kp_str += receivedChar;  // Add received character to the Kp string
+            Kp_str += receivedChar; 
           }
         }
 
