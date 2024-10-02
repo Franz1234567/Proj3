@@ -39,6 +39,7 @@ extern bool last_state_A;
 extern bool last_state_B;
 extern bool curr_state_A;
 extern bool curr_state_B;
+extern bool advanced_control;
 
 extern Timer_msec timer_speed;
 extern Timer_msec timer_pulses;
