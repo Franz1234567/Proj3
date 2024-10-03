@@ -1,11 +1,10 @@
-#ifndef P_CONTROLLER_H
-#define P_CONTROLLER_H
+#ifndef TEST_P_CONTROLLER_H
+#define TEST_P_CONTROLLER_H
 
 class P_controller{
     public:
-        P_controller();
+        P_controller(double Kp);
         virtual double update(double ref, double actual);
-        virtual void init(double Kp);
     private:
         double Kp_priv;
 };
