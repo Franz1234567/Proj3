@@ -1,5 +1,5 @@
-#ifndef TEST_PI_CONTROLLER_H
-#define TEST_PI_CONTROLLER_H
+#ifndef PI_CONTROLLER_H
+#define PI_CONTROLLER_H
 
 class PI_Controller : public P_controller {
 private:
@@ -8,9 +8,10 @@ private:
     double T_priv;
     double sum_error_priv;
 public:
-    PI_Controller(double Kp, double Ti, double T);
+    PI_Controller();
     double update(double ref, double actual) override;
     double get_sum_error();
+    void init(double Kp, double Ti, double T);
 };
 
 #endif

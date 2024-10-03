@@ -1,6 +1,9 @@
 #include "test_p_controller.h"
 
-P_controller::P_controller(double Kp){
+P_controller::P_controller(){
+}
+
+void P_controller::init(double Kp){
     Kp_priv = Kp;
 }
 

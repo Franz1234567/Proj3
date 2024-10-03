@@ -1,13 +1,8 @@
 #include <avr/interrupt.h>
 #include "global.h"
 
+// basic values that can be resetted in pre-operational state
 double Kp = 0.0135;
-// 0.03 value Ku
-// 2s value Tu
-// Kp = 0.0135
-// Ti = 1.66
-// Ki = 0.0081
-
 double Ti = 1.66;
 double T = 0.01;
 

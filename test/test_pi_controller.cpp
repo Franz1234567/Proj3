@@ -1,13 +1,16 @@
-#include "test_global.h"
+#include "global.h"
 
 double error = 0;
 double u = 0;
-double max_speed_test = 2800;
 
-PI_Controller::PI_Controller(double Kp, double Ti, double T) : P_controller(Kp){
+PI_Controller::PI_Controller():P_controller(){
+
+}
+
+void PI_Controller::init(double Kp, double Ti, double T){
+    Kp_priv = Kp;
     Ti_priv = Ti;
     T_priv = T;
-    Kp_priv = Kp;
     sum_error_priv = 0;
 }
 
@@ -15,7 +18,7 @@ double PI_Controller::update(double ref, double actual){
     error = ref - actual;
     sum_error_priv += error * T_priv;
     u =  Kp_priv * error + (Kp_priv/Ti_priv) * sum_error_priv;
-    if (u >= max_speed_test){
+    if (u >= max_speed){
         sum_error_priv -= error * T_priv;
     }
     return u;

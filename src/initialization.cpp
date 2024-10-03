@@ -17,7 +17,6 @@ void InitState::on_do(){
 	current_speed = 0;
 	ref = 2000; // reference speed
 	duty_cycle_first = 50; //original duty cycle
-	duty_cycle = 50; //used to change the duty cycle according to u
 
 	last_state_A = encA.is_low();
 	last_state_B = encB.is_low();

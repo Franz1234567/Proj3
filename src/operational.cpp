@@ -31,11 +31,11 @@ void OperationalState::on_entry()
 {
   Serial.println("Entering Operational State");
   led.set_hi();
-  if (advanced_control){
+  if (advanced_control){ // pi controller was chosen
     control.init(Kp, Ti, T);
   }
   else{
-    control.init(Kp, 1, 0);
+    control.init(Kp, 1, 0); // p controller was chosen
   }
   on_do();
 }
@@ -103,14 +103,11 @@ ISR(TIMER0_COMPA_vect){
   timer_speed.count_speed++;
 
   double u = control.update(ref, (double) current_speed);
-  
-  // duty_cycle = (int) (duty_cycle - u/max_speed*100);
-  if (u > 95){ u = 95;} //limiting the bound of the duty cycle
-  if (u <= 5){ u = 5;} //limiting the bound of the duty cycle
+  if (u > 99){ u = 99;} //limiting the upper bound of the duty cycle
+  if (u < 1){ u = 1;} //limiting the lower bound of the duty cycle
   analog.set(abs(100 - u));
-  //led.toggle(); //to verify stable update
 
-  if(timer_speed.count_speed >= 125){ //1s
+  if(timer_speed.count_speed >= 125){ // prints every 1s
     current_speed = encA.count;
     encA.count = 0;
     timer_speed.count_speed = 0;
@@ -121,17 +118,14 @@ ISR(TIMER0_COMPA_vect){
     Serial.print("------>PWM: ");
     Serial.println(u);
     Serial.println(control.get_sum_error());
-    // Serial.println(duty_cycle);
-    //led.toggle(); // to verify 1s delay for speed
+    //led.toggle(); // to verify 1s delay of the timer
   }
 }
 
 ISR(TIMER1_COMPA_vect){
   analog.pin_digi.set_lo();
-  //led.set_lo(); // to verify stable pwm
 }
 
 ISR(TIMER1_COMPB_vect){
   analog.pin_digi.set_hi();
-  // led.set_hi(); //to verify stable pwm
 }

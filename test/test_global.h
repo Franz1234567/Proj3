@@ -6,8 +6,6 @@
 #include "Arduino.h"
 #include <test_pi_controller.h>
 
-extern double Kp;
-
-extern int max_speed ; 
+extern int max_speed; 
 
 #endif

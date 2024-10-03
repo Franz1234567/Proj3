@@ -7,7 +7,7 @@ state "Operational" as O #LightGreen
 I: entry/ Start
 I: do/ Initialize variables
 
-O: entry/ StartUp Controller and LED
+O: entry/ Start up Controller and LED
 O: do/ Run Controller
 O: exit/ Stop Controller and reset timers
 
