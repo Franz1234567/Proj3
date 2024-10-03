@@ -18,8 +18,8 @@ double PI_Controller::update(double ref, double actual){
     error = ref - actual;
     sum_error_priv += error * T_priv;
     u =  Kp_priv * error + (Kp_priv/Ti_priv) * sum_error_priv;
-    if (u >= max_speed){
-        sum_error_priv -= error * T_priv;
+    if (u >= max_speed){ 
+        sum_error_priv -= error * T_priv; // If the output is saturated, we do not want to accumulate the error
     }
     return u;
 }

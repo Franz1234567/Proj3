@@ -23,7 +23,7 @@ extern double T;
 extern Encoder encA;
 extern Encoder encB;
 
-extern Digital_out led; //used to verify period on oscilloscope
+extern Digital_out led;
 extern Digital_in fault;
 
 extern Analog_out analog;
@@ -33,7 +33,7 @@ extern int max_speed ;
 extern int current_speed;
 extern double ref; // reference speed
 extern double duty_cycle_first; //original duty cycle
-extern int duty_cycle; //used to change the duty cycle according to u
+extern int duty_cycle; // not used anymore
 
 extern bool last_state_A;
 extern bool last_state_B;

@@ -6,10 +6,11 @@ double Kp = 0.0135;
 double Ti = 1.66;
 double T = 0.01;
 
+// global variables 
 Encoder encA(1);
 Encoder encB(2);
 
-Digital_out led(5); //used to verify period on oscilloscope
+Digital_out led(5);
 Analog_out analog(4);
 PI_Controller control;
 Digital_in fault(3);

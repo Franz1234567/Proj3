@@ -7,11 +7,8 @@ class InitState : public State
 {
 public:
   void on_entry() override;
-
   void on_do() override;
-
   void on_exit() override;
-
   void on_event(char event) override;
 };
 

@@ -17,7 +17,7 @@ void OperationalState::on_do()
         break;
       }
       if (fault.is_lo() == 1){
-        command_break = 's'; // We give the command as if the stopped button was pressed to do an autonomous emergency stop
+        command_break = 's'; // We give the command as if the stopped button was pressed to do an autonomous emergency stop when FLT raised
         break;
       }
     }
@@ -35,12 +35,12 @@ void OperationalState::on_entry()
     control.init(Kp, Ti, T);
   }
   else{
-    control.init(Kp, 1, 0); // p controller was chosen
+    control.init(Kp, 1, 0); // p controller was chosen, when T is 0 the integral term is not used
   }
   on_do();
 }
 
-void OperationalState::on_exit()
+void OperationalState::on_exit() // reset the timers
 {
   // Stop Timer0 (used for speed)
   TCCR0B &= ~(1 << CS00);  // Clear the clock source bits to stop Timer0
@@ -118,7 +118,7 @@ ISR(TIMER0_COMPA_vect){
     Serial.print("------>PWM: ");
     Serial.println(u);
     Serial.println(control.get_sum_error());
-    //led.toggle(); // to verify 1s delay of the timer
+    //led.toggle(); // can be used to verify 1s delay of the timer
   }
 }
 

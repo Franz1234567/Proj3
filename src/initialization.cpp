@@ -10,7 +10,7 @@ void InitState::on_exit(){
 	Serial.println("Exiting Init State");
 }
 
-void InitState::on_do(){
+void InitState::on_do(){ // Initialization of the variables
 	Kp = 0.001;
 
 	max_speed = 2800; 

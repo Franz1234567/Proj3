@@ -22,8 +22,8 @@ void PreOpState::on_do(){
   String Kp_str;
   String Ti_str;
 
-  unsigned long previousMillis = 0;       // Stores last time LED was updated
-  const long interval = 500;              // Interval for LED toggle (500 ms)
+  unsigned long previousMillis = 0; // Stores last time LED was updated
+  const long interval = 500; // Interval for LED toggle (500 ms)
 
   while(1){
     unsigned long currentMillis = millis();
