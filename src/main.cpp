@@ -18,7 +18,6 @@ int max_speed;
 int current_speed;
 double ref; // reference speed
 double duty_cycle_first; //original duty cycle
-int duty_cycle; //used to change the duty cycle according to u
 
 bool last_state_A;
 bool last_state_B;
