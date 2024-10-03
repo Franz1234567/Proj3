@@ -17,7 +17,7 @@ void OperationalState::on_do()
         break;
       }
       if (fault.is_lo() == 1){
-        command_break = 's';
+        command_break = 's'; // We give the command as if the stopped button was pressed to do an autonomous emergency stop
         break;
       }
     }
